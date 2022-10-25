@@ -4,6 +4,7 @@ let counter = 0;
 let currentBlocks = [];
 let interval;
 let both = 0;
+let location = 0;
 
 function moveLeft() {
   let movement = parseInt(window.getComputedStyle(character).getPropertyValue("movement"));
@@ -64,6 +65,13 @@ let blocks = setInterval(function() {
     currentBlocks.push(counter);
     counter++;
   }
-  
+  var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+  var characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+  var drop = 0;
+  if (characterTop <= 0) {
+    alert("Game Over. Score: "+(counter-9));
+    clearInterval(blocks);
+    location.reload();
+  }
 })
 
