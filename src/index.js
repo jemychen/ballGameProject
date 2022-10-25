@@ -73,5 +73,34 @@ let blocks = setInterval(function() {
     clearInterval(blocks);
     location.reload();
   }
-})
+  for (let i = 0; i < currentBlocks.length; i++) {
+    let current = currentBlocks[i];
+    let numBlock = document.getElementById("block"+current);
+    let numHole = document.getElementById("block"+current);
 
+    let numBlockTop = parseFloat(window.getComputedStyle(numBlock).getPropertyValue("top"));
+    let numHoleLeft = parseFloat(window.getComputedStyle(numHole).getPropertyValue("left"));
+
+    numBlock.style.top = numBlockTop - 0.5 + "px";
+    numHole.style.top = numBlockTop - 0.5 + "px";
+
+    if (numBlockTop < -20) {
+      currentBlocks.shift();
+      numBlock.remove();
+      numHole.remove();
+    }
+    if (numBlockTop - 20 < characterTop && numBlockTop > characterTop) {
+      drop ++;
+      if (numHoleLeft <= characterLeft && numHoleLeft + 20 >= characterLeft) {
+        drop = 0;
+      }
+    }
+  }
+  if (drop === 0) {
+    if (characterTop < 480) {
+      character.style.top = characterTop + 2 + "px";
+    }
+  } else {
+    character.style.top = characterTop - 0.5 + "px"
+  }
+}, 1);
