@@ -35,3 +35,13 @@ document.addEventListener('keyup', e => {
   clearInterval(interval);
   both = 0;
 })
+
+let blocks = setInterval(function() {
+  let blockLast = document.getElementById("block"+(counter-1));
+  let holeLast = document.getElementById("hole"+(counter-1));
+  if (counter > 0) {
+    let blockLastTop = parseInt(window.getComputedStyle(blockLast).getPropertyValue("top"));
+    let holeLastTop = parseInt(window.getComputedStyle(holeLast).getPropertyValue("top"));
+  }
+})
+
