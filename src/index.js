@@ -20,12 +20,12 @@ function moveRight() {
 }
 
 document.addEventListener("keydown", event => {
-  if (both == 0) {
+  if (both === 0) {
     both ++;
-    if (event.key == "ArrowLeft") {
+    if (event.key === "ArrowLeft") {
       interval = setInterval(moveLeft, 1);
     }
-    if (event.key == "ArrowRight") {
+    if (event.key === "ArrowRight") {
       interval = setInterval(moveRight, 1);
     }
   }
@@ -39,9 +39,20 @@ document.addEventListener('keyup', e => {
 let blocks = setInterval(function() {
   let blockLast = document.getElementById("block"+(counter-1));
   let holeLast = document.getElementById("hole"+(counter-1));
-  if (counter > 0) {
-    let blockLastTop = parseInt(window.getComputedStyle(blockLast).getPropertyValue("top"));
-    let holeLastTop = parseInt(window.getComputedStyle(holeLast).getPropertyValue("top"));
+  let blockLastTop = parseInt(window.getComputedStyle(blockLast).getPropertyValue("top"));
+  let holeLastTop = parseInt(window.getComputedStyle(holeLast).getPropertyValue("top"));
+
+  if (blockLastTop < 400 || counter === 0) {
+    let block = document.createElement("div");
+    let hole = document.createElement("div");
+
+    block.setAttribute("class", "block");
+    hole.setAttribute("class", "hole");
+
+    block.setAttribute("id","block"+counter);
+    hole.setAttribute("id", "hole"+counter);
+
+    
   }
 })
 
